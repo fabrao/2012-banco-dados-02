@@ -1,0 +1,14 @@
+				TRABALHO BS.2 - PART.2
+
+	*Criação de no mínimo 3 visões;
+		(Especificar o porque... e Quais níveis de segurança).
+
+	
+	*Criação/ Remoção de Usuários e Previlégios;
+		(Criar usuários "Cadastrar e fazer login", 
+		  adicionar previlégios para o usuário)
+		Dica: CheckBox com permisões do usuário "delete, edit, remove"
+
+	
+	*No mínimo 3 consultas, gerar arvore canônica e duas equivalente,
+	 especificando as regras de equivalencia utilizadas;

@@ -1,0 +1,227 @@
+1 e 2 - CREATE TABLE peca(
+
+	PeNro INT NOT NULL,
+
+	PeNome VARCHAR(100) NOT NULL,
+
+	PePreco FLOAT NOT NULL,
+
+	Cor VARCHAR(50),
+
+	PRIMARY KEY (PeNro)	
+
+);
+
+
+
+CREATE TABLE fornecedor(
+
+	FNro INT NOT NULL,
+
+	FNome VARCHAR(100) NOT NULL,
+
+	FCidade VARCHAR(100) NOT NULL,
+
+	FCateg VARCHAR(100) NOT NULL,
+
+	PRIMARY KEY (FNro)
+
+);
+
+
+
+CREATE TABLE projeto(
+
+	PNro INT NOT NULL,
+
+	PNome VARCHAR(100) NOT NULL,
+
+	PDuracao FLOAT NOT NULL,
+
+	PCusto DECIMAL(5,2) NOT NULL,
+
+	PRIMARY KEY (PNro)
+
+);
+
+
+
+CREATE TABLE fornece_para(
+
+	PeNro INT NOT NULL,
+
+	FNro INT NOT NULL,
+
+	PNro INT NOT NULL,
+
+	Quant INT NOT NULL,
+
+	PRIMARY KEY (PeNro, FNro, PNro),
+
+	FOREIGN KEY (PeNro) REFERENCES peca(PeNro),
+
+	FOREIGN KEY (FNro) REFERENCES fornecedor(FNro),
+
+	FOREIGN KEY (PNro) REFERENCES fornece_para(PNro)
+
+);
+
+
+
+3 - INSERT INTO peca VALUES
+	(150, 'Roda', 100.00, 'Prata'),
+
+	(160, 'Cambio', 500.00, 'Preto'),
+
+	(170, 'Vidro', 2000.00, 'Transparente'),
+
+	(180, 'Capoo', 800.00, 'Prata');
+
+
+
+INSERT INTO fornecedor VALUES
+	(1, 'Renan', 'Cornelio Procopio', 'Chefe'),
+
+	(2, 'Rafael', 'Curutiba', 'Vendedor1'),
+
+	(3, 'Roberto', 'Londrina', 'vendedor2'),
+
+	(4, 'Ricardo', 'Toledo', 'vendedor3');
+
+
+
+INSERT INTO projeto VALUES
+	(1, 'P1', 90, 20000),
+
+	(2, 'P2', 180, 300000),
+
+	(3, 'P3', 360, 400000),
+
+	(4, 'P4', 400, 500000),
+
+	(5, 'P5', 500, 700000);
+
+
+
+INSERT INTO fornece_para VALUES
+	(1, 2, 3, 1000),
+
+	(1, 3, 2, 2000),
+
+	(3, 1, 2, 3000);
+
+
+4 - 
+a) SELECT PeNome
+ 	FROM peca;
+
+
+
+b) SELECT Fnome, FNro
+ 	FROM fornecedor
+	
+ 	WHERE FCidade='Campinas';
+
+
+
+c) SELECT PNome, PDuracao
+ 	FROM projeto;
+
+
+
+d) SELECT PNome
+ 	FROM projeto
+	
+	WHERE PCusto<3000;
+
+
+
+e) SELECT PeNome 
+	FROM peca 
+	
+	WHERE Cor='Vermelha' and PePreco>500;
+
+
+
+f) SELECT PNome 
+	FROM projeto
+	
+	WHERE PCusto>1000 and PCusto<5000;
+
+
+
+g) SELECT FNro 
+	FROM fornece_para
+
+	WHERE PNro=5;
+
+
+
+h) SELECT FNome
+ 
+	FROM Peça AS P, Fornece_para AS FP, Fornecedor AS F
+	
+	WHERE P.PeNro = FP.PeNro AND
+	F.FNro = FP.FNro AND
+	PeNome = 'Porafuso';
+
+
+
+
+m) SELECT FNome, FNro 
+	FROM Fornecedor F
+	JOIN Fornecedor F2
+	ON F.Fcidade = F2.FCidade
+	WHERE F.Fnome = 'Vulcan'
+
+5 - UPDATE peca 
+	
+	SET Cor= 'Verde'
+	
+	WHERE PePreco=3.00 OR PePreco=10.00 OR PePreco=30.00;
+
+
+
+6 - 
+CREATE TABLE categoria_peca(
+
+	PeNro INT NOT NULL,
+
+	Categoria VARCHAR(100) NOT NULL,
+
+	Descricao VARCHAR(200) NOT NULL,
+
+	PRIMARY KEY (PeNro),
+
+	FOREIGN KEY (PeNro)	REFERENCES peca(PeNro),	
+
+);
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+CREATE TABLE Fornecedor (
+	codigo char(15) NOT NULL,
+	nome varchar(100) NOT NULL,
+	cidade varchar (40) NOT NULL
+
+	PRIMARY KEY (codigo)
+	
+);
+
+
+
+CREATE TABLE Venda (
+	codForn char(15) NOT NULL,
+	cdPeca varchar(10) NOT NULL,
+	quantidade int NOT NULL,
+	data DATE
+	
+	PRIMARY KEY(codForn, codPeca);
+
+	
+	FOREIGN KEY(codForn), REFERENCES Fornecedor [(codigo)],
+	FOREIGN KEY(codPeca), REFERENCES Peca [(codPeca)],
+
+	CHECK (quantidade > 0)
+
+
+
+);
+
+
+
+
+CREATE TABLE Peca (
+	codPeca char(10) NOT NULL,
+	nome varchar(30) NOT NULL,
+	descricao char(200),
+
+	PRIMARY KEY(codPeca)
+
+
+);
+
+
+
+
+
+
+-------------------------------------------
+Fornecedor (codigo, nome, cidade)
+Venda (codForn, codPeca, quantidade, data)
+Peca (codPeca, nome, descricao)
